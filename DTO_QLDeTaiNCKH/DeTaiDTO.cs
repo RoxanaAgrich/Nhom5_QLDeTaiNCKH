@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace DTO_QLDeTaiNCKH
@@ -19,7 +16,6 @@ namespace DTO_QLDeTaiNCKH
     {
         [XmlElement("MaDeTai")]
         public string MaDeTai { get; set; }
-
         [XmlElement("TenDeTai")]
         public string TenDeTai { get; set; }
 
