@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DeTaiListWrapper>
+  <DeTaiList>
 	<DeTai>
 		<MaDeTai>DT01</MaDeTai>
 		<TenDeTai>Đề Tài Nghiên Cứu 1</TenDeTai>
@@ -22,5 +23,6 @@
 		<SoCauHoiKhaoSat>80</SoCauHoiKhaoSat>
 		<ApDungThucTe>false</ApDungThucTe>
 	</DeTai>
+  </DeTaiList>
 </DeTaiListWrapper>
 
