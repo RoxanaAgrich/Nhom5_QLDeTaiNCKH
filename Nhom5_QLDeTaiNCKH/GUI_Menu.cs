@@ -3,6 +3,7 @@ using BLL_QLDeTaiNCKH;
 using DTO_QLDeTaiNCKH;
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 
@@ -21,7 +22,8 @@ namespace Nhom5_QLDeTaiNCKH
                 Console.WriteLine("\n===== QUẢN LÝ ĐỀ TÀI =====");
                 Console.WriteLine("1. Đọc và hiển thị  danh sách đề tài từ file XML");
                 Console.WriteLine("2. Thêm đề tài mới");
-                Console.WriteLine("4. Tìm kiếm đề tài");
+                Console.WriteLine("3. Tìm kiếm đề tài khi biết tên đề tài / mã số/ tên người hướng dẫn/tên người chủ trì ");
+                Console.WriteLine("4. Xuất danh sách cái đề tài khi biết tên giảng viên hướng dẫn  ");
                 Console.WriteLine("5. Cập nhật kinh phí thực hiện tăng 10%");
                 Console.WriteLine("6. Xuất danh sách các đề tài có kinh phí trên 10 triệu");
                 Console.WriteLine("7. Xuất đề tài lý thuyết có khả năng triển khai thực tế");
@@ -49,7 +51,81 @@ namespace Nhom5_QLDeTaiNCKH
                         // Tìm kiếm đề tài
                         SearchDeTai(deTaiBLL);
                         break;
+                    case "4":
+                        // Tìm kiếm các  đề tài khi biết giao viên hướng dẫn 
+                        SearchTopics(deTaiBLL);
+                        break;
+                    case "5":
+                        //Update kinh phí
+                        deTaiBLL.UpdateKinhPhi();
+                        deTaiBLL.DisplayDeTai();
+                        break;
+                    case "6":
+                        //Xuất danh sách các đề tài có kinh phí trên 10 triệu
+                        var deTaiAbove = deTaiBLL.GetDeTaiWithKinhPhiAbove(10);
+                        if (deTaiAbove != null && deTaiAbove.Count > 0)
+                        {
+                            Console.WriteLine("Danh sách các đề tài có kinh phí trên 10 triệu:");
+                            foreach (var deTai in deTaiAbove)
+                            {
+                                deTai.xuatThongTin();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không có đề tài nào có kinh phí trên 10 triệu.");
+                        }
+                        break;
+                    case "7":
+                        //Xuất đề tài lý thuyết có khả năng triển khai thực tế
+                        var deTaiThucTe = deTaiBLL.GetDeTaiTheoreticalAndPractical();
+                        if (deTaiThucTe != null && deTaiThucTe.Count > 0)
+                        {
+                            Console.WriteLine("Danh sách các đề tài lý thuyết có khả năng triển khai thực tế");
+                            foreach (var deTai in deTaiThucTe)
+                            {
+                                deTai.xuatThongTin();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không có đề tài lý thuyết có khả năng triển khai thực tế");
+                        }
+                        break;
 
+                    case "8":
+                        // Xuất danh sách đề tài có  số câu hỏi khảo sát > 100
+                        var questionAbove  = deTaiBLL.GetDeTaiWithQuestionAbove(100);
+                        if (questionAbove != null && questionAbove.Count > 0)
+                        {
+                            Console.WriteLine("Danh  sách đề tài có  số câu hỏi khảo sát > 100");
+                            foreach (var deTai in questionAbove)
+                            {
+                                deTai.xuatThongTin();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không có đề tài nào có  số câu hỏi khảo sát > 100.");
+                        }
+                        break;
+
+                    case "9":
+                        // Xuất đề tài có thời gian thực hiện trên 4 tháng
+                        var topicsOver4Months = deTaiBLL.GetDeTaiWithTopicsOver4Months(4);
+                        if (topicsOver4Months != null && topicsOver4Months.Count > 0)
+                        {
+                            Console.WriteLine("Danh  sách đề tài có  số câu hỏi khảo sát > 100");
+                            foreach (var deTai in topicsOver4Months)
+                            {
+                                deTai.xuatThongTin();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không có đề tài nào có thời gian thực hiện trên 4 tháng.");
+                        }
+                        break;
                     case "0": return;
                     default: Console.WriteLine("Lựa chọn không hợp lệ!"); break;
                 }
@@ -120,7 +196,7 @@ namespace Nhom5_QLDeTaiNCKH
             }
 
             // Creating new DeTaiNCLT_DTO instance
-            var newDeTai = new DeTaiNCLT_DTO
+            var newDeTai = new DeTaiDTO()
             {
                 MaDeTai = maDeTai,
                 TenDeTai = tenDeTai,
@@ -148,6 +224,26 @@ namespace Nhom5_QLDeTaiNCKH
                 foreach (var deTai in results)
                 {
                     deTai.xuatThongTin();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Khong tim thấy");
+            }
+
+        }
+        static void SearchTopics(QLDeTai_BLL deTaiBLL)
+        {
+            Console.Write("Nhập tên  giáo viên hướng dẫn  ");
+            string giang_vien    = Console.ReadLine();
+            var results = deTaiBLL.GetTopicsByLecturer(giang_vien);
+            Console.WriteLine("Kết quả tìm kiếm:");
+            if (results != null && results.Any())
+            {
+                Console.WriteLine($"Danh sach de tai do giang vien {giang_vien}  \t ");
+                foreach (var deTai in results)
+                {
+                    Console.WriteLine($"{deTai.TenDeTai} \t");
                 }
             }
             else

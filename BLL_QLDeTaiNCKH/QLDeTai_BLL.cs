@@ -18,6 +18,10 @@ namespace BLL_QLDeTaiNCKH
 
         public void AddDeTai(DeTaiDTO deTai)
         {
+            if (DanhSachDeTai == null)
+            {
+                DanhSachDeTai = new List<DeTaiDTO>();
+            }
             DanhSachDeTai.Add(deTai);
             Console.WriteLine("Đề tài mới đã được thêm thành công.");
 
@@ -25,6 +29,10 @@ namespace BLL_QLDeTaiNCKH
 
         public void DisplayDeTai()
         {
+            if (DanhSachDeTai == null)
+            {
+                return;
+            }
             Console.WriteLine($"{"Mã Đề Tài",-15} {"Tên Đề Tài",-20} {"Kinh Phí",-10} {"Chủ Trì",-15} {"Ngày Bắt Đầu",-15} {"Ngày Kết Thúc",-15} {"GV Hướng Dẫn",-15}");
             foreach (var deTai in DanhSachDeTai)
             {
@@ -40,6 +48,16 @@ namespace BLL_QLDeTaiNCKH
                 d.ChuTriDeTai.Contains(keyword) ||
                 d.GiangVienHuongDan.Contains(keyword)).ToList();
         }
+        public List<DeTaiDTO> GetTopicsByLecturer(string giang_vien)
+        {
+            if (string.IsNullOrEmpty(giang_vien)) // Ensure the input is valid
+            {
+                return new List<DeTaiDTO>(); // Return an empty list if no input
+            }
+
+            return DanhSachDeTai.Where(d =>
+                             d.GiangVienHuongDan.Contains(giang_vien)).ToList();
+        }
 
         public List<DeTaiDTO> GetDeTaiByGiangVien(string giangVien)
         {
@@ -48,32 +66,76 @@ namespace BLL_QLDeTaiNCKH
 
         public void UpdateKinhPhi()
         {
+            if (DanhSachDeTai == null)
+            {
+                Console.WriteLine("Danh sách đề tài rỗng. Không thể cập nhật kinh phí.");
+                return;
+            }
             foreach (var deTai in DanhSachDeTai)
             {
                 deTai.KinhPhi *= 1.1; // Tăng 10%
             }
+            Console.WriteLine("Cập nhật kinh phí thành công.");
         }
 
         public List<DeTaiDTO> GetDeTaiWithKinhPhiAbove(double amount)
         {
+            if (DanhSachDeTai == null)
+            {
+                Console.WriteLine("Danh sách đề tài rỗng.");
+                return null;
+            }
             return DanhSachDeTai.Where(d => d.KinhPhi > amount).ToList();
         }
-
-        public List<DeTaiNCLT_DTO> GetDeTaiTheoreticalAndPractical()
+        public List<DeTaiDTO> GetDeTaiWithQuestionAbove( int amount)
         {
-            return DanhSachDeTai.OfType<DeTaiNCLT_DTO>()
-                .Where(d => d.ApDungThucTe).ToList();
+            if (DanhSachDeTai == null)
+            {
+                Console.WriteLine("Danh sách đề tài rỗng.");
+                return null;
+            }
+            return DanhSachDeTai.Where(d => d.SoCauHoiKhaoSat > amount).ToList();
+        }
+        public List<DeTaiDTO> GetDeTaiWithTopicsOver4Months(int amount)
+        {
+            if (DanhSachDeTai == null)
+            {
+                Console.WriteLine("Danh sách đề tài rỗng.");
+                return null;
+            }
+            return DanhSachDeTai.Where(d => (d.NgayKetThuc - d.NgayBatDau).TotalDays / 30 > amount).ToList();
         }
 
-        public List<DeTaiKinhTe_DTO> GetDeTaiWithSoCauHoiAbove(int count)
+        public List<DeTaiDTO> GetDeTaiTheoreticalAndPractical()
         {
-            return DanhSachDeTai.OfType<DeTaiKinhTe_DTO>()
-                .Where(d => d.SoCauHoiKhaoSat > count).ToList();
+            if (DanhSachDeTai == null || !DanhSachDeTai.Any())
+            {
+                Console.WriteLine("Danh sách đề tài rỗng.");
+                return new List<DeTaiDTO>(); // Return an empty list if the dataset is empty
+            }
+
+            return DanhSachDeTai.OfType<DeTaiDTO>()
+                .Where(d => d.ApDungThucTe) // No need to check "== true", just use the property directly
+                .ToList();
         }
 
-        public List<DeTaiDTO> GetDeTaiWithDurationMoreThan(int months)
-        {
-            return DanhSachDeTai.Where(d => (d.NgayKetThuc - d.NgayBatDau).TotalDays > months * 30).ToList();
-        }
+        //public List<DeTaiNCLT_DTO> GetDeTaiTheoreticalAndPractical()
+        //{
+        //    return DanhSachDeTai.OfType<DeTaiNCLT_DTO>()
+        //        .Where(d => d.ApDungThucTe == true)
+        //        .ToList();
+        //}
+
+
+        //public List<DeTaiKinhTe_DTO> GetDeTaiWithSoCauHoiAbove(int count)
+        //{
+        //    return DanhSachDeTai.OfType<DeTaiKinhTe_DTO>()
+        //        .Where(d => d.SoCauHoiKhaoSat > count).ToList();
+        //}
+
+        //public List<DeTaiDTO> GetDeTaiWithDurationMoreThan(int months)
+        //{
+        //    return DanhSachDeTai.Where(d => (d.NgayKetThuc - d.NgayBatDau).TotalDays > months * 30).ToList();
+        //}
     }
 }

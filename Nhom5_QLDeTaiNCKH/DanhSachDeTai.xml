@@ -1,28 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DeTaiListWrapper>
-  <DeTaiList>
-	<DeTai>
-		<MaDeTai>DT01</MaDeTai>
-		<TenDeTai>Đề Tài Nghiên Cứu 1</TenDeTai>
-		<KinhPhi>12.5</KinhPhi>
-		<ChuTriDeTai>Nguyễn Văn A</ChuTriDeTai>
-		<NgayBatDau>2023-01-01</NgayBatDau>
-		<NgayKetThuc>2023-12-31</NgayKetThuc>
-		<GiangVienHuongDan>Trần Văn B</GiangVienHuongDan>
-		<SoCauHoiKhaoSat>150</SoCauHoiKhaoSat>
-		<ApDungThucTe>true</ApDungThucTe>
-	</DeTai>
-	<DeTai>
-		<MaDeTai>DT02</MaDeTai>
-		<TenDeTai>Đề Tài Nghiên Cứu 2</TenDeTai>
-		<KinhPhi>8.0</KinhPhi>
-		<ChuTriDeTai>Nguyễn Văn C</ChuTriDeTai>
-		<NgayBatDau>2023-02-01</NgayBatDau>
-		<NgayKetThuc>2023-06-30</NgayKetThuc>
-		<GiangVienHuongDan>Trần Văn D</GiangVienHuongDan>
-		<SoCauHoiKhaoSat>80</SoCauHoiKhaoSat>
-		<ApDungThucTe>false</ApDungThucTe>
-	</DeTai>
-  </DeTaiList>
+	<DeTaiList>
+		<DeTai>
+			<MaDeTai>DT01</MaDeTai>
+			<TenDeTai>Đề Tài Nghiên Cứu 1</TenDeTai>
+			<KinhPhi>12.5</KinhPhi>
+			<ChuTriDeTai>Nguyễn Văn A</ChuTriDeTai>
+			<NgayBatDau>2023-01-01</NgayBatDau>
+			<NgayKetThuc>2023-12-31</NgayKetThuc>
+			<GiangVienHuongDan>Trần Văn B</GiangVienHuongDan>
+			<SoCauHoiKhaoSat>150</SoCauHoiKhaoSat>
+			<ApDungThucTe>true</ApDungThucTe>
+		</DeTai>
+		<DeTai>
+			<MaDeTai>DT02</MaDeTai>
+			<TenDeTai>Đề Tài Nghiên Cứu 2</TenDeTai>
+			<KinhPhi>8.0</KinhPhi>
+			<ChuTriDeTai>Nguyễn Văn C</ChuTriDeTai>
+			<NgayBatDau>2023-02-01</NgayBatDau>
+			<NgayKetThuc>2023-06-30</NgayKetThuc>
+			<GiangVienHuongDan>Trần Văn D</GiangVienHuongDan>
+			<SoCauHoiKhaoSat>80</SoCauHoiKhaoSat>
+			<ApDungThucTe>false</ApDungThucTe>
+		</DeTai>
+		<DeTai>
+			<MaDeTai>DT03</MaDeTai>
+			<TenDeTai>Đề Tài Nghiên Cứu 3</TenDeTai>
+			<KinhPhi>10.0</KinhPhi>
+			<ChuTriDeTai>Nguyễn Văn D</ChuTriDeTai>
+			<NgayBatDau>2023-03-01</NgayBatDau>
+			<NgayKetThuc>2023-09-01</NgayKetThuc>
+			<GiangVienHuongDan>Trần Văn E</GiangVienHuongDan>
+			<SoCauHoiKhaoSat>200</SoCauHoiKhaoSat>
+			<ApDungThucTe>true</ApDungThucTe>
+		</DeTai>
+		<DeTai>
+			<MaDeTai>DT04</MaDeTai>
+			<TenDeTai>Đề Tài Nghiên Cứu 4</TenDeTai>
+			<KinhPhi>15.0</KinhPhi>
+			<ChuTriDeTai>Nguyễn Văn E</ChuTriDeTai>
+			<NgayBatDau>2023-05-01</NgayBatDau>
+			<NgayKetThuc>2023-11-30</NgayKetThuc>
+			<GiangVienHuongDan>Trần Văn F</GiangVienHuongDan>
+			<SoCauHoiKhaoSat>120</SoCauHoiKhaoSat>
+			<ApDungThucTe>false</ApDungThucTe>
+		</DeTai>
+		<DeTai>
+			<MaDeTai>DT05</MaDeTai>
+			<TenDeTai>Đề Tài Nghiên Cứu 5</TenDeTai>
+			<KinhPhi>20.0</KinhPhi>
+			<ChuTriDeTai>Nguyễn Văn G</ChuTriDeTai>
+			<NgayBatDau>2023-07-01</NgayBatDau>
+			<NgayKetThuc>2023-12-31</NgayKetThuc>
+			<GiangVienHuongDan>Trần Văn H</GiangVienHuongDan>
+			<SoCauHoiKhaoSat>300</SoCauHoiKhaoSat>
+			<ApDungThucTe>true</ApDungThucTe>
+		</DeTai>
+	</DeTaiList>
 </DeTaiListWrapper>
-

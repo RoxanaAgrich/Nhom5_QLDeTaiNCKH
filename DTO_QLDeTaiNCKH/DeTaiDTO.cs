@@ -35,24 +35,27 @@ namespace DTO_QLDeTaiNCKH
         public string GiangVienHuongDan { get; set; }
 
         [XmlElement("SoCauHoiKhaoSat")]
-        public int SoCauHoiKhaoSat { get; set; }
+        public int  SoCauHoiKhaoSat { get; set; }
+
+        [XmlElement("ApDungThucTe")]
+        public bool  ApDungThucTe { get; set; }
 
         public virtual void xuatThongTin()
         {
-            Console.WriteLine($"{MaDeTai,-15} {TenDeTai,-20} {KinhPhi,-10} {ChuTriDeTai,-15} {NgayBatDau.ToShortDateString(),-15} {NgayKetThuc.ToShortDateString(),-15} {GiangVienHuongDan,-15}");
+            Console.WriteLine($"{MaDeTai,-15} {TenDeTai,-20} {KinhPhi,-10} {ChuTriDeTai,-15} {NgayBatDau.ToShortDateString(),-15} {NgayKetThuc.ToShortDateString(),-15} {GiangVienHuongDan,-15} {SoCauHoiKhaoSat,-10}");
         }
     }
 
-    public class DeTaiNCLT_DTO : DeTaiDTO
-    {
-        public bool ApDungThucTe { get; set; }
+    //public class DeTaiNCLT_DTO : DeTaiDTO
+    //{
+    //    public bool ApDungThucTe { get; set; }
 
-        public override void xuatThongTin()
-        {
-            base.xuatThongTin();
-            Console.WriteLine($"Áp dụng thực tế: {ApDungThucTe}");
-        }
-    }
+    //    public override void xuatThongTin()
+    //    {
+    //        base.xuatThongTin();
+    //        Console.WriteLine($"Áp dụng thực tế: {ApDungThucTe}");
+    //    }
+    //}
 
     public class DeTaiKinhTe_DTO : DeTaiDTO
     {
