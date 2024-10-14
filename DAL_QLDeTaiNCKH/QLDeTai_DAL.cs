@@ -10,6 +10,8 @@ namespace DAL_QLDeTaiNCKH
     {
         public List<DeTaiDTO> ReadFileXML(string filePath)
         {
+            Console.WriteLine(Path.GetFullPath(filePath));
+
             if (!File.Exists(filePath))
             {
                 Console.WriteLine("File không tồn tại.");

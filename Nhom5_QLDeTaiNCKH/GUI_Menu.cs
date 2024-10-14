@@ -15,18 +15,18 @@ namespace Nhom5_QLDeTaiNCKH
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
             QLDeTai_BLL deTaiBLL = new QLDeTai_BLL();
-            string filePath = @"D:\Nhom5_QLDeTaiNCKH\Nhom5_QLDeTaiNCKH\DanhSachDeTai.xml";
+            string filePath = @"D:\\Visual studio\\MY_Clone\\Nhom5_QLDeTaiNCKH\\Nhom5_QLDeTaiNCKH\\DanhSachDeTai.xml";
             while (true)
             {
                 Console.WriteLine("\n===== QUẢN LÝ ĐỀ TÀI =====");
                 Console.WriteLine("1. Đọc và hiển thị  danh sách đề tài từ file XML");
                 Console.WriteLine("2. Thêm đề tài mới");
-                Console.WriteLine("4. Tìm kiếm đề tài");
-                Console.WriteLine("5. Cập nhật kinh phí thực hiện tăng 10%");
-                Console.WriteLine("6. Xuất danh sách các đề tài có kinh phí trên 10 triệu");
-                Console.WriteLine("7. Xuất đề tài lý thuyết có khả năng triển khai thực tế");
-                Console.WriteLine("8. Xuất đề tài kinh tế với số câu hỏi khảo sát > 100");
-                Console.WriteLine("9. Xuất đề tài có thời gian thực hiện trên 4 tháng");
+                Console.WriteLine("3. Tìm kiếm đề tài");
+                Console.WriteLine("4. Cập nhật kinh phí thực hiện tăng 10%");
+                Console.WriteLine("5. Xuất danh sách các đề tài có kinh phí trên 10 triệu");
+                Console.WriteLine("6. Xuất đề tài lý thuyết có khả năng triển khai thực tế");
+                Console.WriteLine("7. Xuất đề tài kinh tế với số câu hỏi khảo sát > 100");
+                Console.WriteLine("8. Xuất đề tài có thời gian thực hiện trên 4 tháng");
                 Console.WriteLine("0. Thoát");
 
                 Console.Write("Nhập lựa chọn: ");
@@ -49,7 +49,45 @@ namespace Nhom5_QLDeTaiNCKH
                         // Tìm kiếm đề tài
                         SearchDeTai(deTaiBLL);
                         break;
+                    case "4":
+                        //Update kinh phí
+                            deTaiBLL.UpdateKinhPhi();
+                            deTaiBLL.DisplayDeTai();
+                        break;
+                    case "5":
+                        //Xuất danh sách các đề tài có kinh phí trên 10 triệu
+                        var deTaiAbove = deTaiBLL.GetDeTaiWithKinhPhiAbove(10);
 
+                        if (deTaiAbove != null && deTaiAbove.Count > 0)
+                        {
+                            Console.WriteLine("Danh sách các đề tài có kinh phí trên 10 triệu:");
+                            foreach (var deTai in deTaiAbove)
+                            {
+                                deTai.xuatThongTin(); 
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không có đề tài nào có kinh phí trên 10 triệu.");
+                        }
+                        break;
+                    case "6":
+                        //Xuất danh sách các đề tài thuộc lĩnh vực nghiên cứu lý thuyết và có khả năng triển khai vào thực tế.
+                        var deTaiPractical = deTaiBLL.GetDeTaiTheoreticalAndPractical();
+
+                        if (deTaiPractical != null && deTaiPractical.Count > 0)
+                        {
+                            Console.WriteLine("Danh sách các đề tài thực tế:");
+                            foreach (var deTai in deTaiPractical)
+                            {
+                                deTai.xuatThongTin();
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Không có đề tài nào thực tế.");
+                        }
+                        break;
                     case "0": return;
                     default: Console.WriteLine("Lựa chọn không hợp lệ!"); break;
                 }
