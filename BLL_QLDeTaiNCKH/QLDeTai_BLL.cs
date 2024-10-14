@@ -3,8 +3,6 @@ using DAL_QLDeTaiNCKH;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL_QLDeTaiNCKH
 {
@@ -21,6 +19,8 @@ namespace BLL_QLDeTaiNCKH
         public void AddDeTai(DeTaiDTO deTai)
         {
             DanhSachDeTai.Add(deTai);
+            Console.WriteLine("Đề tài mới đã được thêm thành công.");
+
         }
 
         public void DisplayDeTai()
